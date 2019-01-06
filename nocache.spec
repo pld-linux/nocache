@@ -1,11 +1,11 @@
 Summary:	Minimize filesystem caching effects
 Name:		nocache
-Version:	1.0
+Version:	1.1
 Release:	1
 License:	BSD
 Group:		Base
-Source0:	https://github.com/Feh/nocache/archive/v%{version}.tar.gz
-# Source0-md5:	29a177c7d990a75570645902c7ad9a4b
+Source0:	https://github.com/Feh/nocache/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	a9d37fb73036a02b0e910985dd9ed643
 URL:		https://github.com/Feh/nocache
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -27,12 +27,12 @@ state of the cache.
 
 %build
 %{__make} \
+	CC="%{__cc}" \
 	CFLAGS+="%{rpmcppflags} %{rpmcflags}" \
 	LDFLAGS+="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	PREFIX= \
