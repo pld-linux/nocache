@@ -1,9 +1,11 @@
 Summary:	Minimize filesystem caching effects
+Summary(pl.UTF-8):	Minimalizowanie efektów buforowania systemu plików
 Name:		nocache
 Version:	1.1
 Release:	1
 License:	BSD
 Group:		Base
+#Source0Download: https://github.com/Feh/nocache/releases
 Source0:	https://github.com/Feh/nocache/archive/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	a9d37fb73036a02b0e910985dd9ed643
 URL:		https://github.com/Feh/nocache
@@ -22,6 +24,19 @@ actively used (think: hot standby).
 Use case: backup processes that should not interfere with the present
 state of the cache.
 
+%description -l pl.UTF-8
+Narzędzie nocache próbuje zminimalizować wpływ buforowania systemu
+plików w pamięci podręcznej na aplikację. Dokonuje tego poprzez
+przechwycenie wywołań systemowych open i close i wywoływanie funkcji
+posix_fadvise z parametrem POSIX_FADV_DONTNEED. Ponieważ biblioteka
+zapamiętuje, które strony (tj. 4kB bloki pliku) były już w pamięci
+podręcznej systemu plików przy otwieraniu pliku, te strony nie są
+oznaczane jako niepotrzebne, ponieważ inne aplikacje mogą ich
+potrzebować, mimo że nie są aktualnie używane.
+
+Przypadek użycia: procesy kopii zapasowych, które nie powinny wpływać
+na bieżący stan pamięci podręcznej.
+
 %prep
 %setup -q
 
@@ -33,6 +48,7 @@ state of the cache.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	PREFIX= \
