@@ -2,7 +2,7 @@ Summary:	Minimize filesystem caching effects
 Summary(pl.UTF-8):	Minimalizowanie efektów buforowania systemu plików
 Name:		nocache
 Version:	1.1
-Release:	1
+Release:	2
 License:	BSD
 Group:		Base
 #Source0Download: https://github.com/Feh/nocache/releases
